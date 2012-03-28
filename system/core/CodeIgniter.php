@@ -249,6 +249,9 @@
 		show_error('Unable to load your default controller. Please make sure the controller specified in your Routes.php file is valid.');
 	}
 
+	// Declarate namespace name if not using namespacing
+	$_ns = '';
+
 	include(APPPATH.'controllers/'.$RTR->fetch_directory().$RTR->fetch_class().'.php');
 
 	// Set a mark point for benchmarking
@@ -263,6 +266,7 @@
  *  loader class can be called via the URI, nor can
  *  controller functions that begin with an underscore
  */
+	$class = $_ns . '\\' . $RTR->fetch_class();
 	$class  = $RTR->fetch_class();
 	$method = $RTR->fetch_method();
 
